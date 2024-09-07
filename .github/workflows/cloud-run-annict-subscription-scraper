@@ -1,0 +1,48 @@
+---
+name: Cloud Run Function - Annict Subscription Scraper
+env:
+  GOOGLE_PJ_NO: ${{ secrets.GOOGLE_PJ_NO }}
+  GOOGLE_PJ_ID: ${{ secrets.GOOGLE_PJ_ID }}
+  ANNICT_TEST_WORK_ID: 10976 # https://annict.com/works/10976 でテスト
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-gae:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Auth with Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/${{ GOOGLE_PJ_NO }}/locations/global/workloadIdentityPools/github/attribute.repository/${{ github.actor }}/gcp-cloud-run-private"
+          service_account: "gcp-cloud-run-private@${{ GOOGLE_PJ_ID }}.iam.gserviceaccount.com"
+
+      - id: Deploy CloudRun Function
+        uses: google-github-actions/deploy-cloud-functions@v3
+        timeout-minutes: 10
+        with:
+          name: annict-subscription-scraper
+          runtime: go123
+
+      - name: Test
+        run: |
+          response=$(curl "http://${{ steps.deploy.outputs.url }}:8080/?id=${{ env.ANNICT_TEST_WORK_ID }}")
+          result=$(echo $response | jq '.services[] | select(.name == "dアニメストア") | .available')
+          if [[ $result == "true" ]]; then
+            echo "The return value is true."
+          else
+            echo "The return value is not true."
+            exit 1
+          fi
