@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Auth with Google Cloud
         uses: google-github-actions/auth@v2
