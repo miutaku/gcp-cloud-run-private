@@ -6,9 +6,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'annict-subscription-scraper/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'annict-subscription-scraper/**'
 
 jobs:
   deploy-cloudrun-function:
