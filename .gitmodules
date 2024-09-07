@@ -1,4 +1,3 @@
 [submodule "annict-subscription-scraper"]
 	path = annict-subscription-scraper
 	url = git@github.com:miutaku/annict-subscription-scraper.git
-    branch = fix/module-name-fix
