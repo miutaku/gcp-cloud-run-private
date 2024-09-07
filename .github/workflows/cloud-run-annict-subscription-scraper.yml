@@ -34,6 +34,9 @@ jobs:
           name: annict-subscription-scraper
           runtime: go123
           region: asia-northeast1
+          memory_mb: 128 # MB
+          entry_point: main
+          timeout: 60 # seconds
 
       - name: Test
         run: |
