@@ -6,7 +6,11 @@ env:
   ANNICT_TEST_WORK_ID: 10976 # https://annict.com/works/10976 でテスト
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   deploy-gae:
