@@ -32,7 +32,7 @@ jobs:
         timeout-minutes: 10
         with:
           name: annict-subscription-scraper
-          source_dir: ./annict-subscription-scraper/
+          source_dir: ./annict-subscription-scraper
           runtime: go122
           region: asia-northeast1
           memory_mb: 128 # MB
