@@ -22,7 +22,7 @@ jobs:
       - name: Auth with Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: 'projects/${{ GOOGLE_PJ_NO }}/locations/global/workloadIdentityPools/github/attribute.repository/${{ github.actor }}/gcp-cloud-run-private'
+          workload_identity_provider: "projects/${{ GOOGLE_PJ_NO }}/locations/global/workloadIdentityPools/github/attribute.repository/${{ github.actor }}/gcp-cloud-run-private"
           service_account: "gcp-cloud-run-private@${{ GOOGLE_PJ_ID }}.iam.gserviceaccount.com"
 
       - id: Deploy CloudRun Function
