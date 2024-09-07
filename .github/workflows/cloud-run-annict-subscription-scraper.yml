@@ -33,6 +33,7 @@ jobs:
         with:
           name: annict-subscription-scraper
           runtime: go123
+          region: asia-northeast1
 
       - name: Test
         run: |
