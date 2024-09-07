@@ -3,7 +3,7 @@ name: Cloud Run Function - Annict Subscription Scraper
 env:
   GOOGLE_PJ_NO: ${{ secrets.GOOGLE_PJ_NO }}
   GOOGLE_PJ_ID: ${{ secrets.GOOGLE_PJ_ID }}
-  ANNICT_TEST_WORK_ID: 10976
+  ANNICT_TEST_WORK_ID: 10976 # https://annict.com/works/10976 でテスト
 on:
   push:
     branches: [ "main" ]
