@@ -27,7 +27,7 @@ jobs:
           workload_identity_provider: "projects/${{ secrets.GOOGLE_PJ_NO }}/locations/global/workloadIdentityPools/github/attribute.repository/${{ github.actor }}/gcp-cloud-run-private"
           service_account: "gcp-cloud-run-private@${{ secrets.GOOGLE_PJ_ID }}.iam.gserviceaccount.com"
 
-      - id: Deploy CloudRun Function
+      - name: Deploy CloudRun Function
         uses: google-github-actions/deploy-cloud-functions@v3
         timeout-minutes: 10
         with:
